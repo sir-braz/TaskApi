@@ -1,7 +1,9 @@
 package com.backend.api.controller;
 
+import com.backend.api.entity.Task;
 import com.backend.api.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,6 +17,9 @@ public class TaskController {
     }
 
     @PostMapping(value = "/api/tasks")
+    public ResponseEntity<Task> createTask(@RequestBody Task task){
+
+    }
 
     @GetMapping(value = "/api/tasks")
 
