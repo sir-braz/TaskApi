@@ -21,4 +21,7 @@ public class UserController {
 
     @PostMapping(value = "/api/users")
 
+    @GetMapping(value = "/api/users")
+
+
 }
