@@ -29,6 +29,9 @@ public class TaskController {
     }
 
     @GetMapping(value = "/api/tasks/{id}")
+    public ResponseEntity<List<Task>> listTask(@PathVariable Long taskId){
+
+    }
 
     @PutMapping(value = "/api/tasks/{id}")
 
