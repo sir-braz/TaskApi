@@ -34,6 +34,9 @@ public class TaskController {
     }
 
     @PutMapping(value = "/api/tasks/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
+
+    }
 
     @DeleteMapping(value = "/api/tasks/{id}")
 
