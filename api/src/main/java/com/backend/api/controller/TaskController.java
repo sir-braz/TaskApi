@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TaskController {
 
@@ -17,11 +19,14 @@ public class TaskController {
     }
 
     @PostMapping(value = "/api/tasks")
-    public ResponseEntity<Task> createTask(@RequestBody Task task){
+    public ResponseEntity<Task> createTask(){
 
     }
 
     @GetMapping(value = "/api/tasks")
+    public ResponseEntity<List<Task>> listAllTask(@RequestBody Task task){
+
+    }
 
     @GetMapping(value = "/api/tasks/{id}")
 
