@@ -23,5 +23,7 @@ public class UserController {
 
     @GetMapping(value = "/api/users")
 
+    @GetMapping(value = "/api/users/{id}")
+
 
 }
