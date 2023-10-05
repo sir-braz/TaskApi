@@ -1,4 +1,7 @@
 package com.backend.api.repository;
 
-public interface TaskRepository {
+import com.backend.api.entity.Task;
+import org.springframework.data.repository.CrudRepository;
+
+public interface TaskRepository extends CrudRepository<Task, Long> {
 }
