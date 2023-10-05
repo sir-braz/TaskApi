@@ -4,10 +4,7 @@ import com.backend.api.entity.User;
 import com.backend.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -24,6 +21,8 @@ public class UserController {
     @GetMapping(value = "/api/users")
 
     @GetMapping(value = "/api/users/{id}")
+
+    @PutMapping(value = "/api/users/{id}")
 
 
 }
