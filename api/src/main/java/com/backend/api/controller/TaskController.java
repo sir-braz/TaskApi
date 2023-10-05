@@ -20,5 +20,7 @@ public class TaskController {
 
     @GetMapping(value = "/api/users")
 
+    @GetMapping(value = "/api/users/{id}")
+
 
 }
