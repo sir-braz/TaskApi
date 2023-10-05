@@ -81,7 +81,7 @@ The following tasks are pending for the Task Management API:
 - [ ] Implement the core entities (Task, User).
 - [ ] Define relationships between entities.
 - [ ] Implement unit tests for API endpoints.
-- [] Develop the controller, service, and repository layers.
+- [x] Develop the controller, service, and repository layers.
 - [ ] Implement user authentication (in progress).
 - [ ] Enhance API security.
 - [ ] Implement pagination and sorting.
