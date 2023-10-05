@@ -24,5 +24,7 @@ public class UserController {
 
     @PutMapping(value = "/api/users/{id}")
 
+    @DeleteMapping(value = "/api/users/{id}")
+
 
 }
