@@ -19,11 +19,11 @@ public class TaskController {
 
     @PostMapping(value = "/api/tasks")
 
-    @GetMapping(value = "/api/users")
+    @GetMapping(value = "/api/tasks")
 
-    @GetMapping(value = "/api/users/{id}")
+    @GetMapping(value = "/api/tasks/{id}")
 
-    @PutMapping(value = "/api/users/{id}")
+    @PutMapping(value = "/api/tasks/{id}")
 
 
 }
