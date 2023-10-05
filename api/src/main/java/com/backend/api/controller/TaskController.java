@@ -39,6 +39,9 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "/api/tasks/{id}")
+    public ResponseEntity<Task> deleteTask(@PathVariable Long taskId){
+
+    }
 
 
 }
