@@ -22,7 +22,7 @@ public class TaskController {
     }
 
     @PostMapping(value = "/api/tasks")
-    public ResponseEntity<Task> createTask(){
+    public ResponseEntity<Task> createTask(@RequestBody Task task){
         try{
             return null;
         }catch (BackendException ex){

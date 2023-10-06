@@ -17,6 +17,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/api/users")
+    public ResponseEntity<User> createUser(@RequestBody User user){
+
+    }
 
     @GetMapping(value = "/api/users")
 
