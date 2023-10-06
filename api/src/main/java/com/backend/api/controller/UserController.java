@@ -29,6 +29,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/api/users/{id}")
+    public ResponseEntity<List<User>> listUser(@PathVariable long userId){
+
+    }
 
     @PutMapping(value = "/api/users/{id}")
 
