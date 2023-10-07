@@ -39,6 +39,8 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/api/users/{id}")
+    public ResponseEntity<User> deleteUser(){
 
+    }
 
 }
