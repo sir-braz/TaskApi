@@ -34,7 +34,11 @@ public class UserController {
     }
 
     @PutMapping(value = "/api/users/{id}")
+    public ResponseEntity<User> updateUser(){
+
+    }
 
     @DeleteMapping(value = "/api/users/{id}")
+
 
 }
