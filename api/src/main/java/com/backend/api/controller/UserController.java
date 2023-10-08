@@ -71,9 +71,10 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/api/users/{id}")
-    public ResponseEntity<User> deleteUser(){
+    public ResponseEntity<User> deleteUser(@PathVariable Long id){
         try{
-            return null;
+            userService.deleteUserById(id);
+            return ResponseEntity.noContent().build();
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
