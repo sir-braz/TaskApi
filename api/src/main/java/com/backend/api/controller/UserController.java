@@ -29,7 +29,8 @@ public class UserController {
     @GetMapping(value = "/api/users")
     public ResponseEntity<List<User>> listAllUsers(){
         try{
-            return null;
+            List<User> users = userService.getAllUsers();
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
