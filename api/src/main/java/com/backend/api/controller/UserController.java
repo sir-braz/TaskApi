@@ -14,17 +14,14 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private UserService userService;
-
     @Autowired
-    public void setUserService(UserService userService){
-        this.userService = userService;
-    }
+    private UserService userService;
 
     @PostMapping(value = "/api/users")
     public ResponseEntity<User> createUser(@RequestBody User user){
         try{
-            return null;
+            User createdUser = userService.createUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
