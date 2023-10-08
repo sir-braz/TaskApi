@@ -28,9 +28,10 @@ public class TaskController {
     }
 
     @GetMapping(value = "/api/tasks")
-    public ResponseEntity<List<Task>> listAllTask(@RequestBody Task task){
+    public ResponseEntity<List<Task>> listAllTask(){
         try{
-            return null;
+            List<Task> tasks = taskService.getAllTasks();
+            return ResponseEntity.status(HttpStatus.CREATED).body(tasks);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
