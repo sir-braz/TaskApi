@@ -38,9 +38,15 @@ public class TaskController {
     }
 
     @GetMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<List<Task>> listTask(@PathVariable Long taskId){
+    public ResponseEntity<List<Task>> listTask(@PathVariable Long id){
         try{
-            return null;
+            Task task = taskService.getTaskById(id);
+
+            if(task != null){
+                return ResponseEntity.ok((List<Task>) task);
+            }else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
