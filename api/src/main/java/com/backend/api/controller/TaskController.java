@@ -69,9 +69,15 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable Long taskId){
+    public ResponseEntity<Task> deleteTask(@PathVariable Long id){
         try{
-            return null;
+            boolean deleted = taskService.deleteTaskById(id);
+
+            if(deleted){
+                return ResponseEntity.noContent().build();
+            }else{
+                return ResponseEntity.notFound().build();
+            }
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
