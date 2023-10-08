@@ -20,7 +20,8 @@ public class TaskController {
     @PostMapping(value = "/api/tasks")
     public ResponseEntity<Task> createTask(@RequestBody Task task){
         try{
-            return null;
+            Task createdTask = taskService.createTask(task);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
