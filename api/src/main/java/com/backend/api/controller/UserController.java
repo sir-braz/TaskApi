@@ -3,6 +3,7 @@ package com.backend.api.controller;
 import com.backend.api.entity.User;
 import com.backend.api.service.UserService;
 import com.backend.api.utility.BackendException;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,9 +39,16 @@ public class UserController {
     }
 
     @GetMapping(value = "/api/users/{id}")
-    public ResponseEntity<List<User>> listUser(@PathVariable long userId){
+    public ResponseEntity<List<User>> listUser(@PathVariable long id){
         try{
-            return null;
+            User user = userService.getUserById(id);
+
+            if(user != null){
+                return ResponseEntity.ok((List<User>) user);
+            }else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
