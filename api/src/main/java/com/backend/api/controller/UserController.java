@@ -53,10 +53,19 @@ public class UserController {
     }
 
     @PutMapping(value = "/api/users/{id}")
-    public ResponseEntity<User> updateUser(){
-        try{
-            return null;
-        }catch (BackendException ex){
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updateUser) {
+        try {
+            User existingUser = userService.getUserById(id);
+
+            if (existingUser != null) {
+                existingUser.setUsername(updateUser.getUsername());
+                existingUser.setEmail(updateUser.getEmail());
+
+                return ResponseEntity.ok(existingUser);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (BackendException ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
