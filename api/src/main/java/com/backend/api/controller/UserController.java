@@ -3,7 +3,6 @@ package com.backend.api.controller;
 import com.backend.api.entity.User;
 import com.backend.api.service.UserService;
 import com.backend.api.utility.BackendException;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,7 @@ public class UserController {
     @PostMapping(value = "/api/users")
     public ResponseEntity<User> createUser(@RequestBody User user){
         try{
-            User createdUser = userService.createUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+           return null;
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
@@ -31,24 +29,16 @@ public class UserController {
     @GetMapping(value = "/api/users")
     public ResponseEntity<List<User>> listAllUsers(){
         try{
-            List<User> users = userService.listAllUsers();
-            return ResponseEntity.status(HttpStatus.CREATED).body(users);
+            return null;
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @GetMapping(value = "/api/users/{id}")
-    public ResponseEntity<List<User>> listUser(@PathVariable long id){
+    public ResponseEntity<List<User>> listUser(@PathVariable long userId){
         try{
-            User user = userService.getUserById(id);
-
-            if(user != null){
-                return ResponseEntity.ok((List<User>) user);
-            }else{
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-            }
-
+            return null;
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
