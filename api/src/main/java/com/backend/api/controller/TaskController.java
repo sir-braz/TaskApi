@@ -53,9 +53,16 @@ public class TaskController {
     }
 
     @PutMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updateTask){
         try{
-            return null;
+            Task existingTask = taskService.getTaskById(id);
+
+            existingTask.setTitle(updateTask.getTitle());
+            existingTask.setDescription(updateTask.getDescription());
+            existingTask.setCompleted(updateTask.getCompleted());
+
+            Task update = taskService.updateTask(existingTask);
+            return ResponseEntity.ok(update);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
