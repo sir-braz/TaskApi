@@ -77,8 +77,8 @@ Unit tests are available to ensure the reliability of the API. Run the tests usi
 The following tasks are pending for the Task Management API:
 
 - [x] Create a base project with Spring Initializr.
-- [ ] Configure the project with the necessary dependencies.
-- [ ] Implement the core entities (Task, User).
+- [x] Configure the project with the necessary dependencies.
+- [x] Implement the core entities (Task, User).
 - [ ] Define relationships between entities.
 - [ ] Implement unit tests for API endpoints.
 - [x] Develop the controller, service, and repository layers.
