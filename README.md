@@ -1,6 +1,6 @@
 # Task Management API
 
-The Task Management API is a comprehensive platform for creating and managing task lists. This API allows users to create, update, and mark tasks as completed, providing an efficient way to track and organize daily activities.
+The Task Management API is a comprehensive platform for creating and managing task lists. 
 
 ## Prerequisites
 
