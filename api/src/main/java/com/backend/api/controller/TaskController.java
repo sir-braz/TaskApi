@@ -6,15 +6,21 @@ import com.backend.api.utility.BackendException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Service
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    public void setTaskService(TaskService taskService){
+        this.taskService = taskService;
+    }
 
 
     @PostMapping(value = "/api/tasks")
@@ -59,8 +65,6 @@ public class TaskController {
 
             existingTask.setTitle(updateTask.getTitle());
             existingTask.setDescription(updateTask.getDescription());
-            existingTask.setCompleted(updateTask.getCompleted());
-
             Task update = taskService.updateTask(existingTask);
             return ResponseEntity.ok(update);
         }catch (BackendException ex){
