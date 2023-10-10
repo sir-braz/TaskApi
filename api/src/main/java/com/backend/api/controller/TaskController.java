@@ -6,61 +6,82 @@ import com.backend.api.utility.BackendException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
+@Service
 public class TaskController {
 
+    @Autowired
     private TaskService taskService;
 
-    @Autowired
-    public void setTaskService (TaskService taskService){
+    public void setTaskService(TaskService taskService){
         this.taskService = taskService;
     }
+
 
     @PostMapping(value = "/api/tasks")
     public ResponseEntity<Task> createTask(@RequestBody Task task){
         try{
-            return null;
+            Task createdTask = taskService.createTask(task);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @GetMapping(value = "/api/tasks")
-    public ResponseEntity<List<Task>> listAllTask(@RequestBody Task task){
+    public ResponseEntity<List<Task>> listAllTask(){
         try{
-            return null;
+            List<Task> tasks = taskService.getAllTasks();
+            return ResponseEntity.status(HttpStatus.CREATED).body(tasks);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @GetMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<List<Task>> listTask(@PathVariable Long taskId){
+    public ResponseEntity<List<Task>> listTask(@PathVariable Long id){
         try{
-            return null;
+            Task task = taskService.getTaskById(id);
+
+            if(task != null){
+                return ResponseEntity.ok((List<Task>) task);
+            }else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @PutMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task){
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task updateTask){
         try{
-            return null;
+            Task existingTask = taskService.getTaskById(id);
+
+            existingTask.setTitle(updateTask.getTitle());
+            existingTask.setDescription(updateTask.getDescription());
+            Task update = taskService.updateTask(existingTask);
+            return ResponseEntity.ok(update);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     @DeleteMapping(value = "/api/tasks/{id}")
-    public ResponseEntity<Task> deleteTask(@PathVariable Long taskId){
+    public ResponseEntity<Task> deleteTask(@PathVariable Long id){
         try{
-            return null;
+            boolean deleted = taskService.deleteTaskById(id);
+
+            if(deleted){
+                return ResponseEntity.noContent().build();
+            }else{
+                return ResponseEntity.notFound().build();
+            }
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }

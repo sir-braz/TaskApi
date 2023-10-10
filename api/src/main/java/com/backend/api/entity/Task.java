@@ -1,19 +1,25 @@
 package com.backend.api.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "task")
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "completed")
     private Boolean completed;
+
+    // Constructors, getters, and setters (including for completed) should be here...
 
     public Long getId() {
         return id;
