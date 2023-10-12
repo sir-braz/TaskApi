@@ -73,6 +73,9 @@ public class TaskController {
     }
 
     @PutMapping("/api/tasks/{id}/complete")
+    public ResponseEntity<Task> completeTask(@PathVariable Long id){
+
+    }
 
 
 
