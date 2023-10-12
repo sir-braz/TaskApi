@@ -67,10 +67,14 @@ public class TaskController {
             existingTask.setDescription(updateTask.getDescription());
             Task update = taskService.updateTask(existingTask);
             return ResponseEntity.ok(update);
-        }catch (BackendException ex){
+        }catch (BackendException ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @PutMapping("/api/tasks/{id}/complete")
+
+
 
     @DeleteMapping(value = "/api/tasks/{id}")
     public ResponseEntity<Task> deleteTask(@PathVariable Long id){
