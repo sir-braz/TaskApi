@@ -27,7 +27,7 @@ services:
       - 3306:3306
     environment:
       # Configurações do banco de dados MySQL
-      MYSQL_DATABASE: inventorydb
+      MYSQL_DATABASE: taskmanagementdb
       MYSQL_ROOT_PASSWORD: admin123
     networks:
       - backend_network
