@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Service
@@ -75,7 +76,8 @@ public class TaskController {
     @PutMapping("/api/tasks/{id}/complete")
     public ResponseEntity<Task> completeTask(@PathVariable Long id){
         try{
-            return null;
+            Optional<Task> optionalTask = Optional.ofNullable(taskService.getTaskById(id));
+
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
