@@ -2,7 +2,10 @@ package com.backend.api.service;
 
 import com.backend.api.entity.Task;
 import com.backend.api.repository.TaskRepository;
+import com.backend.api.utility.BackendException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -21,26 +24,46 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task createTask(Task task) {
-        return null;
+        try{
+            return null;
+        }catch (BackendException ex){
+            throw new BackendException("Error to create task");
+        }
     }
 
     @Override
     public List<Task> getAllTasks() {
-        return null;
+        try{
+            return null;
+        }catch (BackendException ex){
+            throw new BackendException("Error to list all tasks");
+        }
     }
 
     @Override
     public Task getTaskById(Long id) {
-        return null;
+        try{
+            return null;
+        }catch (BackendException ex){
+            throw new BackendException("Error to get task with id");
+        }
     }
 
     @Override
     public Task updateTask(Task existingTask) {
-        return null;
+        try{
+            return null;
+        }catch (BackendException ex){
+            throw new BackendException("Error to update task");
+        }
     }
 
     @Override
     public boolean deleteTaskById(Long id) {
-        return false;
+        try{
+            return Boolean.parseBoolean(null);
+        }catch (BackendException ex){
+            throw new BackendException("Error to delet task with id");
+        }
     }
 }

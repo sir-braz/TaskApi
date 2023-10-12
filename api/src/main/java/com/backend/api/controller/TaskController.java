@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +19,9 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    public void setTaskService(TaskService taskService){
-        this.taskService = taskService;
-    }
+//    public void setTaskService(TaskService taskService){
+//        this.taskService = taskService;
+//    }
 
 
     @PostMapping(value = "/api/tasks")
