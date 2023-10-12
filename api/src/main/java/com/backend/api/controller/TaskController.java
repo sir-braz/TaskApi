@@ -77,7 +77,15 @@ public class TaskController {
     public ResponseEntity<Task> completeTask(@PathVariable Long id){
         try{
             Optional<Task> optionalTask = Optional.ofNullable(taskService.getTaskById(id));
+            if(optionalTask.isPresent()){
+                Task task = optionalTask.get();
 
+                task.setCompleted(true);
+                taskService.createTask(task);
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
