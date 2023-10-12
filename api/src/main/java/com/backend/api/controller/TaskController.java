@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Service
@@ -67,10 +68,30 @@ public class TaskController {
             existingTask.setDescription(updateTask.getDescription());
             Task update = taskService.updateTask(existingTask);
             return ResponseEntity.ok(update);
+        }catch (BackendException ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @PutMapping("/api/tasks/{id}/complete")
+    public ResponseEntity<Task> completeTask(@PathVariable Long id){
+        try{
+            Optional<Task> optionalTask = Optional.ofNullable(taskService.getTaskById(id));
+            if(optionalTask.isPresent()){
+                Task task = optionalTask.get();
+
+                task.setCompleted(true);
+                taskService.createTask(task);
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(null);
         }catch (BackendException ex){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
 
     @DeleteMapping(value = "/api/tasks/{id}")
     public ResponseEntity<Task> deleteTask(@PathVariable Long id){
