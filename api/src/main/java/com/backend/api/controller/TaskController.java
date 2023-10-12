@@ -74,7 +74,11 @@ public class TaskController {
 
     @PutMapping("/api/tasks/{id}/complete")
     public ResponseEntity<Task> completeTask(@PathVariable Long id){
-
+        try{
+            return null;
+        }catch (BackendException ex){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 
