@@ -43,15 +43,7 @@ The Task Management API offers the following endpoints to manage tasks:
 - `PUT /api/tasks/{id}`: Update an existing task by ID.
 - `DELETE /api/tasks/{id}`: Delete a task by ID.
 - `PUT /api/tasks/{id}/complete`: Mark a task as completed by ID.
-- `GET /api/tasks/user/{userId}`: List all tasks of a specific user.
 
-### Users
-
-- `POST /api/users`: Create a new user.
-- `GET /api/users`: List all users.
-- `GET /api/users/{id}`: Retrieve details of a specific user by ID.
-- `PUT /api/users/{id}`: Update user information by ID.
-- `DELETE /api/users/{id}`: Delete a user by ID.
 
 ## Dockerization
 
