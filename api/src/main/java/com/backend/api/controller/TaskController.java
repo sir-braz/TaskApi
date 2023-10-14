@@ -19,11 +19,6 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-//    public void setTaskService(TaskService taskService){
-//        this.taskService = taskService;
-//    }
-
-
     @PostMapping(value = "/api/tasks")
     public ResponseEntity<Task> createTask(@RequestBody Task task){
         try{

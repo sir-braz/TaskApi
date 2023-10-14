@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -25,7 +26,7 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Task createTask(Task task) {
         try{
-            return null;
+            return taskRepository.save(task);
         }catch (BackendException ex){
             throw new BackendException("Error to create task");
         }
@@ -34,7 +35,7 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getAllTasks() {
         try{
-            return null;
+            return (List<Task>) taskRepository.findAll();
         }catch (BackendException ex){
             throw new BackendException("Error to list all tasks");
         }
@@ -43,7 +44,8 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Task getTaskById(Long id) {
         try{
-            return null;
+            Optional<Task> taskOptional = taskRepository.findById(id);
+            return taskOptional.orElse(null);
         }catch (BackendException ex){
             throw new BackendException("Error to get task with id");
         }
@@ -51,17 +53,33 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task updateTask(Task existingTask) {
-        try{
-            return null;
-        }catch (BackendException ex){
-            throw new BackendException("Error to update task");
+        try {
+            Optional<Task> taskOptional = taskRepository.findById(existingTask.getId());
+
+            if (taskOptional.isPresent()) {
+                Task taskToUpdate = taskOptional.get();
+                taskToUpdate.setTitle(existingTask.getTitle());
+                taskToUpdate.setDescription(existingTask.getDescription());
+
+                return taskRepository.save(taskToUpdate);
+            } else {
+                throw new BackendException("Task not found");
+            }
+        } catch (BackendException ex) {
+            throw new BackendException("Error updating the task");
         }
     }
 
     @Override
     public boolean deleteTaskById(Long id) {
         try{
-            return Boolean.parseBoolean(null);
+            Optional<Task> taskOptional = taskRepository.findById(id);
+            if(taskOptional.isPresent()){
+                taskRepository.deleteById(id);
+                return true;
+            }else{
+                throw new BackendException("Task not Found");
+            }
         }catch (BackendException ex){
             throw new BackendException("Error to delet task with id");
         }
