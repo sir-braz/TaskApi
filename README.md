@@ -73,4 +73,5 @@ The following tasks are pending for the Task Management API:
 - [x] Implement the core entities (Task).
 - [x] Develop the controller, service, and repository layers.
 - [x] Complete API documentation.
+- [x] Dockerize the application with Dockerfile and Docker Compose
 
