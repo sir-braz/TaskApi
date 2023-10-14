@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -43,7 +44,8 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Task getTaskById(Long id) {
         try{
-            return null;
+            Optional<Task> taskOptional = taskRepository.findById(id);
+            return taskOptional.orElse(null);
         }catch (BackendException ex){
             throw new BackendException("Error to get task with id");
         }
