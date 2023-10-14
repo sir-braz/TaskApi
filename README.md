@@ -70,12 +70,9 @@ The following tasks are pending for the Task Management API:
 
 - [x] Create a base project with Spring Initializr.
 - [x] Configure the project with the necessary dependencies.
-- [x] Implement the core entities (Task, User).
-- [ ] Define relationships between entities.
+- [x] Implement the core entities (Task).
 - [ ] Implement unit tests for API endpoints.
 - [x] Develop the controller, service, and repository layers.
-- [ ] Implement user authentication (in progress).
-- [ ] Enhance API security.
 - [ ] Implement pagination and sorting.
 - [x] Complete API documentation.
 
