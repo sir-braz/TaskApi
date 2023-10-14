@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public Task createTask(Task task) {
         try{
-            return null;
+            return taskRepository.save(task);
         }catch (BackendException ex){
             throw new BackendException("Error to create task");
         }
