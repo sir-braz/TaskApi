@@ -53,10 +53,25 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public Task updateTask(Task existingTask) {
-        try{
-            return null;
-        }catch (BackendException ex){
-            throw new BackendException("Error to update task");
+        try {
+            // Check if the task with the provided ID exists in the repository
+            Optional<Task> taskOptional = taskRepository.findById(existingTask.getId());
+
+            if (taskOptional.isPresent()) {
+                // The task exists, update its attributes based on 'existingTask'
+                Task taskToUpdate = taskOptional.get();
+                taskToUpdate.setTitle(existingTask.getTitle());
+                taskToUpdate.setDescription(existingTask.getDescription());
+                // Update other attributes...
+
+                // Save the updated task in the repository
+                return taskRepository.save(taskToUpdate);
+            } else {
+                // If the task does not exist, you can throw an exception or return null, depending on your error handling strategy.
+                throw new BackendException("Task not found");
+            }
+        } catch (BackendException ex) {
+            throw new BackendException("Error updating the task");
         }
     }
 
