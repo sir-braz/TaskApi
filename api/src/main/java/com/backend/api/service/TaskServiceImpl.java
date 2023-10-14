@@ -34,7 +34,7 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getAllTasks() {
         try{
-            return null;
+            return (List<Task>) taskRepository.findAll();
         }catch (BackendException ex){
             throw new BackendException("Error to list all tasks");
         }
